@@ -134,3 +134,4 @@ notebooks/*.xlsx
 notebooks/*.csv
 
 notebooks/.DS_Store
+.DS_Store
