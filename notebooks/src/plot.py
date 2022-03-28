@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-def plot_histogram(df: pd.DataFrame, variable: str):
+def plot_histogram(df: pd.DataFrame, variable: str, **kwargs):
     """
     Plots histogram         
         
@@ -11,7 +11,7 @@ def plot_histogram(df: pd.DataFrame, variable: str):
     
     """
     plt.figure(figsize = (9,3))
-    sns.histplot(data=df,x=variable, kde=True)
+    sns.histplot(data=df,x=variable, kde=True, **kwargs)
     plt.xlabel(variable)
     plt.ylabel("Frequency")
     plt.title("{}".format(variable))
@@ -19,7 +19,7 @@ def plot_histogram(df: pd.DataFrame, variable: str):
 
     return(plt)
 
-def plot_cnt(df: pd.DataFrame, variable: str):
+def plot_cnt(df: pd.DataFrame, variable: str, **kwargs):
     """
     Plots histogram         
         
@@ -28,7 +28,7 @@ def plot_cnt(df: pd.DataFrame, variable: str):
     
     """
     plt.figure(figsize = (9,3))
-    sns.countplot(data=df,x=variable)
+    sns.countplot(data=df,x=variable, **kwargs)
     plt.xlabel(variable)
     plt.ylabel("Frequency")
     plt.title("{} ".format(variable))
