@@ -11,7 +11,7 @@ def plot_histogram(df: pd.DataFrame, variable: str, **kwargs):
     
     """
     plt.figure(figsize = (9,3))
-    sns.displot(data=df,x=variable,kind="kde" , **kwargs)
+    sns.displot(data=df,x=variable,kind="hist", **kwargs)
     plt.xlabel(variable)
     plt.ylabel("Frequency")
     plt.title("{}".format(variable))
