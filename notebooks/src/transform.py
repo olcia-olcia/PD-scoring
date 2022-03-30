@@ -1,6 +1,7 @@
 import pandas as pd
 from typing import List
 from dateutil.relativedelta import relativedelta
+import numpy as np
 
 def diff_month(d1, d2):
     return (d1.year - d2.year) * 12 + d1.month - d2.month
@@ -20,7 +21,7 @@ def transform_dates(df: pd.DataFrame , columns: List[str]) -> pd.DataFrame :
 
 
 
-def transform_categorical(df: pd.DataFrame , columns: List[str]) -> pd.DataFrame:
+def transform_categorical(df: pd.DataFrame) -> pd.DataFrame:
 
     """ 
     Prepares calculations based on columns categorical columns
@@ -33,7 +34,7 @@ def transform_categorical(df: pd.DataFrame , columns: List[str]) -> pd.DataFrame
     return df
 
 
-def transform_numerical(df: pd.DataFrame , columns: List[str]) -> pd.DataFrame :
+def transform_numerical(df: pd.DataFrame) -> pd.DataFrame :
 
     """ 
     Prepares calculations based on numeric columns
@@ -53,10 +54,12 @@ def transform_numerical(df: pd.DataFrame , columns: List[str]) -> pd.DataFrame :
     #loan amount
     df['total_loan_amount'] = df['installement']*df['term']
 
-    
+    df['VIP'] = np.where(df['annual_inc']>= 500000,1,0)
+
+
     return df
 
-def transform_target(df: pd.DataFrame , columns: List[str]) -> pd.DataFrame :
+def transform_target(df: pd.DataFrame , default_columns: List[str]) -> pd.DataFrame :
     #default_columns = ['Charged Off', 'Default', 'Does not meet the credit policy. Status:Charged Off', 'Late (31-120 days)']  
-
+    df['target'] = df['loan_status'].apply(lambda x: 1 if x in default_columns else 0)
     return df
