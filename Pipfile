@@ -7,6 +7,8 @@ name = "pypi"
 pandas = "*"
 stats = "*"
 scipy = "*"
+sklearn = "*"
+xgboost = "*"
 
 [dev-packages]
 ipykernel = "*"
